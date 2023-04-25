@@ -1,6 +1,8 @@
-@extends('layout')
+{{-- @extends('layout')
 
-@section('content')
+@section('content') --}}
+<x-layout>
+
 @include('partials._hero')
 @include('partials._search')
 <div
@@ -17,4 +19,4 @@
 
 </div>
 
-@endsection
+</x-layout>
