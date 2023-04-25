@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ListingController;
 use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -41,12 +42,7 @@ Route::get('/', function () {
 // });
 
 // All Listings
-Route::get('/', function(){
-    return view('listings',[
-        'heading' => 'Latest Listings',
-        'listings' => Listing::all()
-    ]);    
-});
+Route::get('/', [ListingController::class, 'index']);
 
 // Single Listing
 
@@ -64,10 +60,5 @@ Route::get('/', function(){
 
 // you can pass to eloquent a whole listing which will be as an indicator to id also
 // and it do all the if and abort 404 automatically
-Route::get('/listing/{listing}', function(Listing 
-$listing){
-    
-    return view('listing',[
-        'listing' => $listing
-    ]);
-});
+
+Route::get('/listing/{listing}', [ListingController::class, 'showById']);
