@@ -41,7 +41,7 @@ Route::get('/', function () {
 //     return $request->name . ' Lives In ' . $request->city;
 // });
 
-// All Listings
+// Show All Listings
 Route::get('/', [ListingController::class, 'index']);
 
 // Single Listing
@@ -61,4 +61,16 @@ Route::get('/', [ListingController::class, 'index']);
 // you can pass to eloquent a whole listing which will be as an indicator to id also
 // and it do all the if and abort 404 automatically
 
+
+
+
+// Show Create Form
+Route::get('/listings/create', [ListingController::class, 'create']);
+
+
+// Store Listing Data
+Route::post('/listings', [ListingController::class, 'store']);
+
+
+// Show Single listing
 Route::get('/listing/{listing}', [ListingController::class, 'showById']);
