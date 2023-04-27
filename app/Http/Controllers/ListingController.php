@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Listing;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ListingController extends Controller
 {
@@ -14,8 +15,18 @@ class ListingController extends Controller
 
         
         return view('listings.index',[
+            
+            //// ## dd in paginate is different from get ##
+            
+            // 'listings' => Listing::latest()->
+            // filter(request(['tag', 'search']))->get()
+            
+            
+            // 'listings' => Listing::latest()->
+            // filter(request(['tag', 'search']))->simplePaginate(2)
+
             'listings' => Listing::latest()->
-            filter(request(['tag', 'search']))->get()
+            filter(request(['tag', 'search']))->Paginate(6)
         ]);
 
 
@@ -41,13 +52,27 @@ class ListingController extends Controller
      // Store Listing Data
      public function store(Request $request){
         // dd($request->all());
+        dd($request->file('logo'));
         $formFields = $request->validate([
-
+             'title' => 'required',
+             'company' => ['required', Rule::unique('listings', 'company')],
+             'location' => 'required',
+             'website' => 'required',
+             'email' => ['required', 'email'],
+             'tags' => 'required',
+             'description' => 'required'
         ]);
-        
-    //    Session::flash('message', 'Listing Created!');
-    
 
+        if($request->hasFile('logo')){
+            $formFields['logo'] = $request->file('logo')->store('logos', 'public');
+        }
+
+        Listing::create($formFields);
+
+    //    Session::flash('message', 'Listing Created!');
+        
+    // with message is a type of messages and there are error ana many different messages
+        return redirect('/')->with('message', 'Listing created successfully!');
     }
 
 
