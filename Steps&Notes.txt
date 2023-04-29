@@ -7,3 +7,7 @@ from 2:17
             *** php artisan migrate:refresh --seed *** 
         4.2 make image is public and can be accessed from the website URL
             by writting php artisan storage:link
+    5- Edit Gig
+    6- Delete Gig
+    7- Create authentication/ register form
+        7.1- php artisan make:controller UserController

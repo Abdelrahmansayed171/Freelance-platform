@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\ListingController;
 use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ListingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -82,5 +83,13 @@ Route::get('/listing/{listing}', [ListingController::class, 'showById']);
 // Update Listing
 Route::put('/listings/{listing}', [ListingController::class, 'update']);
 
+
 // Delte Listing
 Route::delete('/listings/{listing}', [ListingController::class, 'delete']);
+
+
+// Show Register Form
+Route::get('/register', [UserController::class, 'register']);
+
+// Create New User
+Route::post('/users', [UserController::class, 'store']);
