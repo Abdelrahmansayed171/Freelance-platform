@@ -50,17 +50,17 @@ class ListingController extends Controller
 
 
      // Store Listing Data
-     public function store(Request $request){
+    public function store(Request $request){
         // dd($request->all());
         // dd($request->file('logo'));
         $formFields = $request->validate([
-             'title' => 'required',
-             'company' => ['required', Rule::unique('listings', 'company')],
-             'location' => 'required',
-             'website' => 'required',
-             'email' => ['required', 'email'],
-             'tags' => 'required',
-             'description' => 'required'
+            'title' => 'required',
+            'company' => ['required', Rule::unique('listings', 'company')],
+            'location' => 'required',
+            'website' => 'required',
+            'email' => ['required', 'email'],
+            'tags' => 'required',
+            'description' => 'required'
         ]);
 
         if($request->hasFile('logo')){
@@ -75,5 +75,34 @@ class ListingController extends Controller
         return redirect('/')->with('message', 'Listing created successfully!');
     }
 
+    public function edit(Listing $listing){
+        // dd($listing);
+        return view('listings.edit', ['listing' => $listing]);
+    }
 
+    // Update Listing
+    public function update(Request $request,Listing $listing){
+        // dd($request->all());
+        // dd($request->file('logo'));
+        $formFields = $request->validate([
+            'title' => 'required',
+            'company' => ['required'],
+            'location' => 'required',
+            'website' => 'required',
+            'email' => ['required', 'email'],
+            'tags' => 'required',
+            'description' => 'required'
+        ]);
+
+        if($request->hasFile('logo')){
+            $formFields['logo'] = $request->file('logo')->store('logos', 'public');
+        }
+
+        $listing->update($formFields);
+
+        //    Session::flash('message', 'Listing Created!');
+        
+         // with message is a type of messages and there are error ana many different messages
+        return back()->with('message', 'Listing Updated successfully!');
+    }
 }

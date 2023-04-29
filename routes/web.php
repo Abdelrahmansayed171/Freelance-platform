@@ -78,3 +78,6 @@ Route::get('/listings/{listing}/edit', [ListingController::class, 'edit']);
 
 // Show Single listing
 Route::get('/listing/{listing}', [ListingController::class, 'showById']);
+
+// Update Listing
+Route::put('/listings/{listing}', [ListingController::class, 'update']);
