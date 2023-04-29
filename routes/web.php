@@ -72,5 +72,9 @@ Route::get('/listings/create', [ListingController::class, 'create']);
 Route::post('/listings', [ListingController::class, 'store']);
 
 
+// Edit Listing
+Route::get('/listings/{listing}/edit', [ListingController::class, 'edit']);
+
+
 // Show Single listing
 Route::get('/listing/{listing}', [ListingController::class, 'showById']);
