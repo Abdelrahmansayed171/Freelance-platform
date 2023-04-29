@@ -105,4 +105,12 @@ class ListingController extends Controller
          // with message is a type of messages and there are error ana many different messages
         return back()->with('message', 'Listing Updated successfully!');
     }
+    
+    // Delete Listing
+    public function delete(Listing $listing){
+        $listing->delete();
+        return redirect('/')->with('message', 'Listing Deleted Successfully!');
+
+    }
+
 }
