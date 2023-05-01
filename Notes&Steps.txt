@@ -1,0 +1,31 @@
+from 2:17
+    1- Server Side validation & Showing error message in create Gig
+    2- Save the Old value if error during creating new listing occur
+    3- Pagnation of the listings using paginate()
+    4- Save Image on server and path to Database
+        4.1 Add in listings table logo attribute in Migrations then Run
+            *** php artisan migrate:refresh --seed *** 
+        4.2 make image is public and can be accessed from the website URL
+            by writting php artisan storage:link
+    5- Edit Gig
+    6- Delete Gig
+    7- Create authentication/ register form
+        7.1- php artisan make:controller UserController
+
+    8- Create middleware to filtering requests before being handeled
+       as it defines the available requests for authenticated users and
+       actions available for not authenticated users, So we need to set it up in web.php file
+       if the middleware blocks the request it redirect it into Home page 
+       
+       8.1 So we need to set the home url in  RouteServiceProvider.php file
+    
+    9-  Set a foreign key at listings from user ID in migrations and test it with 
+        Factory Seeders then php artisan migrate:refresh --seed
+    
+    10- Define the relationship between User and Listing Models by defining funcitons declare this relation
+    11- php artisan tinker to query on the database in easy way 
+        11.1 Query Examples:
+            . App\Models\Listing::first()
+            . App\Models\Listing::find(3)
+            . App\Models\Listing::find(3)->user
+            . App\Models\Listing::find(3)
