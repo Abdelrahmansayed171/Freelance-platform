@@ -29,3 +29,7 @@ from 2:17
             . App\Models\Listing::find(3)
             . App\Models\Listing::find(3)->user
             . App\Models\Listing::find(3)
+            . $user = App\Models\User::first() ** Then U can use this varaible many times like
+                - $user -> to get it's value
+                - $user->listings  -> getlistings for the user
+            . exit

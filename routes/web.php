@@ -88,6 +88,11 @@ Route::put('/listings/{listing}', [ListingController::class, 'update'])->middlew
 Route::delete('/listings/{listing}', [ListingController::class, 'delete'])->middleware('auth');
 
 
+//Manage listings
+Route::get('/listings/manage', [ListingController::class, 'manage'])->middleware('auth');
+
+
+
 // Show Register Form
 Route::get('/register', [UserController::class, 'register'])->middleware('guest');
 
